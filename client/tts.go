@@ -10,7 +10,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/taigrr/elevenlabs/client/types"
+	"github.com/garlicgarrison/elevenlabs/client/types"
 )
 
 func (c Client) TTSWriter(ctx context.Context, w io.Writer, modelID, text, voiceID string, options types.SynthesisOptions) error {
@@ -28,7 +28,7 @@ func (c Client) TTSWriter(ctx context.Context, w io.Writer, modelID, text, voice
 		return err
 	}
 	req.Header.Set("xi-api-key", c.apiKey)
-	req.Header.Set("User-Agent", "github.com/taigrr/elevenlabs")
+	req.Header.Set("User-Agent", "github.com/garlicgarrison/elevenlabs")
 	req.Header.Set("accept", "audio/mpeg")
 	res, err := client.Do(req)
 
@@ -72,7 +72,7 @@ func (c Client) TTS(ctx context.Context, modelID, text, voiceID string, options 
 		return []byte{}, err
 	}
 	req.Header.Set("xi-api-key", c.apiKey)
-	req.Header.Set("User-Agent", "github.com/taigrr/elevenlabs")
+	req.Header.Set("User-Agent", "github.com/garlicgarrison/elevenlabs")
 	req.Header.Set("accept", "audio/mpeg")
 	res, err := client.Do(req)
 
@@ -118,7 +118,7 @@ func (c Client) TTSStream(ctx context.Context, w io.Writer, text, voiceID string
 		return err
 	}
 	req.Header.Set("xi-api-key", c.apiKey)
-	req.Header.Set("User-Agent", "github.com/taigrr/elevenlabs")
+	req.Header.Set("User-Agent", "github.com/garlicgarrison/elevenlabs")
 	req.Header.Set("accept", "audio/mpeg")
 	res, err := client.Do(req)
 
