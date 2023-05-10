@@ -1,4 +1,4 @@
-module github.com/taigrr/elevenlabs
+module github.com/garlicgarrison/elevenlabs
 
 go 1.20
 
