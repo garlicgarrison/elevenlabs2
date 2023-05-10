@@ -19,6 +19,7 @@ type Voice struct {
 	Labels      string     `json:"labels,omitempty"`      // Serialized labels dictionary for the voice.
 }
 type TTS struct {
+	ModelID       string           `json:"model_id"`
 	Text          string           `json:"text"`                     // The text that will get converted into speech. Currently only English text is supported.
 	VoiceSettings SynthesisOptions `json:"voice_settings,omitempty"` // Voice settings are applied only on the given TTS request.
 }
@@ -174,4 +175,20 @@ type VoiceResponseModel struct {
 	PreviewURL        string                  `json:"preview_url"`
 	AvailableForTiers []string                `json:"available_for_tiers"`
 	Settings          SynthesisOptions        `json:"settings"`
+}
+
+type Language struct {
+	LanguageID string `json:"language_id"`
+	Name       string `json:"name"`
+}
+
+type ModelResponseModel struct {
+	ModelID              string     `json:"model_id"`
+	Name                 string     `json:"name"`
+	Description          string     `json:"description"`
+	CanBeFinetuned       bool       `json:"can_be_finetuned"`
+	CanDoTextToSpeech    bool       `json:"can_do_text_to_speech"`
+	CanDoVoiceConversion bool       `json:"can_do_voice_conversion"`
+	TokenCostFactor      float64    `json:"token_cost_factor"`
+	Languages            []Language `json:"languages"`
 }

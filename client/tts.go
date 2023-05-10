@@ -13,10 +13,11 @@ import (
 	"github.com/taigrr/elevenlabs/client/types"
 )
 
-func (c Client) TTSWriter(ctx context.Context, w io.Writer, text, voiceID string, options types.SynthesisOptions) error {
+func (c Client) TTSWriter(ctx context.Context, w io.Writer, modelID, text, voiceID string, options types.SynthesisOptions) error {
 	options.Clamp()
 	url := fmt.Sprintf(c.endpoint+"/v1/text-to-speech/%s", voiceID)
 	opts := types.TTS{
+		ModelID:       modelID,
 		Text:          text,
 		VoiceSettings: options,
 	}
@@ -56,11 +57,12 @@ func (c Client) TTSWriter(ctx context.Context, w io.Writer, text, voiceID string
 	}
 }
 
-func (c Client) TTS(ctx context.Context, text, voiceID string, options types.SynthesisOptions) ([]byte, error) {
+func (c Client) TTS(ctx context.Context, modelID, text, voiceID string, options types.SynthesisOptions) ([]byte, error) {
 	options.Clamp()
 	url := fmt.Sprintf(c.endpoint+"/v1/text-to-speech/%s", voiceID)
 	client := &http.Client{}
 	opts := types.TTS{
+		ModelID:       modelID,
 		Text:          text,
 		VoiceSettings: options,
 	}
